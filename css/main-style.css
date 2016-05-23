@@ -1,4 +1,4 @@
-<!--
+/*
         Why are you here? Go away.
 
              *     ,MMM8&&&.            *
@@ -22,18 +22,24 @@
   |  |  |  |(_(  |  |  |  |  |  |  |  |  |  |
   |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
   |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
--->
+*/
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="Description" content="Aaron Friedlander's personal website."/>
-    <title>Aaron Friedlander</title>
-    <link rel="stylesheet" type="text/css" charset="utf-8" href="css/main-style.css" />
-  </head>
-  <body>
-    <div id="main">
-      <h2>Oh no! There's nothing here yet!</h2>
-    </div>
-  </body>
-</html>
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #2F4154;
+}
+
+#main {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: #16A085;
+  font-family: sans-serif;
+}
