@@ -29,11 +29,31 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="Description" content="Aaron Friedlander's personal website."/>
     <title>Aaron Friedlander</title>
-    <link rel="stylesheet" type="text/css" charset="utf-8" href="css/main-style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+    <link rel="stylesheet" type="text/css" charset="utf-8" href="css/home-style.css" />
   </head>
-  <body>
-    <div id="main">
-      <h2>Oh no! There's nothing here yet!</h2>
+  <body onload="init();">
+    <canvas id="canvas" tabindex="1"></canvas>
+
+    <span class="padFullPage"></span>
+
+    <div id="content" class="preload">
+      <div id="topHeader">Hi, I'm Aaron</div>
+      <div id="subHeader">(this website is still under construction)</div>
+
+      <div id="viewResumeHover">View Resume</div>
+
+      <div id="miniResume">
+        <span class="resMain">Aaron Friedlander</span> <br>
+        <span class="resMain">CMU CS</span> &#x025AA 3.70 &#x025AA May 2017 <br>
+        <span class="resMain">Cisco Meraki</span> &#x025AA <span class="resMain">Microsoft</span> &#x025AA 2 Startups <br>
+        Storage &#x025AA Networks &#x025AA <span class="resMain">OS</span> &#x025AA <span class="resMain">Distributed</span> <br>
+        <span class="resMain">C</span> &#x025AA <span class="resMain">Java</span> &#x025AA Go &#x025AA <span class="resMain">C++</span> &#x025AA Javascript &#x025AA PHP <br>
+        (*8*) 3*3-0*50 ▪︎ <span class="resMain obfuscateEmail" duser="fba.noraa" dsite="moc.liamg"></span>
+      </div>
     </div>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/homepage.js"></script>
   </body>
 </html>

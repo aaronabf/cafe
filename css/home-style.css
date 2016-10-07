@@ -1,0 +1,91 @@
+/*
+        Why are you here? Go away.
+
+             *     ,MMM8&&&.            *
+                  MMMM88&&&&&    .
+                 MMMM88&&&&&&&
+     *           MMM88&&&&&&&&
+                 MMM88&&&&&&&&
+                 'MMM88&&&&&&'
+                   'MMM8&&&'      *
+          |\___/|
+          )     (             .              '
+         =\     /=
+           )===(       *
+          /     \
+          |     |
+         /       \
+         \       /
+  _/\_/\_/\__  _/_/\_/\_/\_/\_/\_/\_/\_/\_/\_
+  |  |  |  |( (  |  |  |  |  |  |  |  |  |  |
+  |  |  |  | ) ) |  |  |  |  |  |  |  |  |  |
+  |  |  |  |(_(  |  |  |  |  |  |  |  |  |  |
+  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Open Sans, Sans-Serif;
+  text-align: center;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+}
+
+.preload * {
+  display: none;
+}
+
+.padFullPage{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -999;
+    padding: 800px;
+}
+
+#topHeader {
+  padding-top: 50px;
+  font-size: 5em;
+}
+
+#subHeader {
+  padding-top: 10px;
+  font-size: 1em;
+  color: #CCC;
+}
+#viewResumeHover {
+  padding-top: 10px;
+}
+#miniResume {
+  padding-top: 10px;
+  line-height: 175%;
+  color: #CCC;
+
+  opacity: 0.0;
+
+  -webkit-transition: all 500ms ease-in-out;
+     -moz-transition: all 500ms ease-in-out;
+      -ms-transition: all 500ms ease-in-out;
+       -o-transition: all 500ms ease-in-out;
+          transition: all 500ms ease-in-out;
+}
+
+#viewResumeHover:hover + #miniResume {
+  opacity: 1.0;
+}
+
+.resMain {
+  color: #000;
+}
+
+.obfuscateEmail:before {
+  content: attr(dsite) "\0040" attr(duser);
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
