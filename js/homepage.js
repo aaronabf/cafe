@@ -57,6 +57,14 @@ const timerRippleInc      = 1.02;
 const clickRippleDec      = 4;
 const timerIntervalHeavy  = 20;
 
+// Constants for text
+const xEmptyStart = 5;
+const xEmptyEnd = 10;
+const xEmptyExtra = 10;
+const yEmptyStart = 5;
+const yEmptyEnd = 8;
+const yEmptyExtra = 20;
+
 // Global Variables
 var canvas;
 var ctx;
@@ -92,6 +100,7 @@ function init() {
     initHeavyRippleMode();
   }
 
+  // Ensure the canvas finishes loading before we display the content section
   $("#content").removeClass("preload");
 }
 
@@ -199,6 +208,8 @@ function draw(chaos) {
       var r2 = getRandInRange(-piOver2, piOver2);
       points[i][j].x = (i*spacing) + (spacing/chaos) * Math.cos(r1) - spacing;
       points[i][j].y = (j*spacing) + (spacing/chaos) * Math.cos(r2) - spacing;
+      // points[i][j].x = (i*spacing) - spacing;
+      // points[i][j].y = (j*spacing) - spacing;
     }
   }
 
@@ -206,15 +217,20 @@ function draw(chaos) {
   ctx.font = '18px Open Sans';
   ctx.fillStyle = '#000';
   ctx.textAlign = 'left'
-  ctx.fillText('Click to ripple,', 5*spacing + 10, 5*spacing + 20);
-  ctx.fillText('scroll to explore', 5*spacing + 10, 6*spacing + 20);
-  ctx.fillText('a new world', 5*spacing + 10, 7*spacing + 20);
+  ctx.fillText('Click to ripple,', xEmptyStart*spacing+xEmptyExtra, yEmptyStart*spacing+yEmptyExtra);
+  ctx.fillText('scroll to explore', xEmptyStart*spacing+xEmptyExtra, (yEmptyStart+1)*spacing+yEmptyExtra);
+  ctx.fillText('a new world', xEmptyStart*spacing+xEmptyExtra, (yEmptyStart+2)*spacing+yEmptyExtra);
 
   // Draw and fill the quadrilaterals
   for (var i = 0; i < points.length - 1; i++) {
     for (var j = 0; j < points[i].length - 1; j++) {
-      ctx.fillStyle = points[i][j].c;
-      if (i >= 5 && i <= 10 && j >= 5 && j <= 8) { ctx.fillStyle = '#FFF'; }
+      if (i >= xEmptyStart && i <= xEmptyEnd &&
+          j >= yEmptyStart && j <= yEmptyEnd) {
+        ctx.fillStyle = '#FFF';
+      } else {
+        ctx.fillStyle = points[i][j].c;
+      }
+
       ctx.beginPath();
 
       ctx.moveTo(points[i][j].x,points[i][j].y);

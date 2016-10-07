@@ -27,8 +27,9 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: Open Sans, Sans-Serif;
+
   text-align: center;
+  font-family: Open Sans, Sans-Serif;
 }
 
 html, body {
@@ -37,16 +38,27 @@ html, body {
   background-size: 100%;
 }
 
+canvas {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  outline: none;
+}
+
 .preload * {
-  display: none;
+  opacity: 0.0;
 }
 
 .padFullPage{
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -999;
-    padding: 800px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  z-index: -999;
 }
 
 #topHeader {
@@ -59,11 +71,19 @@ html, body {
   font-size: 1em;
   color: #CCC;
 }
-#viewResumeHover {
-  padding-top: 10px;
+
+#viewResumeHover, #photoLink {
+  margin: 60px 80px 60px 60px;
 }
+
+#viewResumeHover a, #photoLink a {
+  color: inherit;
+  text-decoration: none;
+}
+
 #miniResume {
-  padding-top: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   line-height: 175%;
   color: #CCC;
 
@@ -76,11 +96,22 @@ html, body {
           transition: all 500ms ease-in-out;
 }
 
-#viewResumeHover:hover + #miniResume {
+#viewResumeHover:hover ~ #miniResume {
   opacity: 1.0;
 }
 
-.resMain {
+#viewResumeHover:active ~ #miniResume {
+  opacity: 1.0;
+}
+
+.border {
+  padding: 10px;
+  display: inline-block;
+  border-width: 3px;
+  border-style: solid;
+}
+
+.rMain {
   color: #000;
 }
 
