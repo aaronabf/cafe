@@ -24,6 +24,9 @@
   |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 */
 
+/****************************************************************************
+ *****                             Configs                              *****
+ ****************************************************************************/
 
 // Define the various modes the program can run
 const MODE = {
@@ -33,41 +36,60 @@ const MODE = {
   HEAVYRIPPLE:  3
 };
 
-// Set the mode
+// Set mode we are running in
 const mode = MODE.RIPPLE;
 
 // General Constants
-const spacing         = 28;   // lower => more shapes
-const minAlphaVal     = 0.2;
-const maxAlphaVal     = 0.5;
-const piOver2         = Math.PI/2;
+const spacing     = 28;   // lower => more shapes
+const minAlphaVal = 0.2;
+const maxAlphaVal = 0.5;
+const piOver2     = Math.PI/2;
 
 // Constants for movement mode
-const xDistanceWeight = 5;
-const chaosFactor     = 2.5;
+const xDistWeight = 5;
+const chaosFactor = 2.5;
 
 // Constants for ripple mode
 const maxRippleTime       = 5;
-const rippleTime          = 50;
-const timerIntervalRipple = 50;
+const timeToRipple        = 50;
+const rippleIntervalTime  = 50;
 
 // Constants for heavy ripple mode
 const maxDistance         = 50;
 const timerRippleInc      = 1.02;
 const clickRippleDec      = 4;
-const timerIntervalHeavy  = 20;
+const heavyIntervalTime   = 20;
 
-// Constants for text
-const xEmptyStart = 5;
-const xEmptyEnd = 10;
-const xEmptyExtra = 10;
-const yEmptyStart = 5;
-const yEmptyEnd = 8;
-const yEmptyExtra = 20;
+const TEXT_LOC = {
+  xStart: 5,
+  xEnd:   10,
+  xExtra: 10,
+  yStart: 5,
+  yEnd:   8,
+  yExtra: 20
+};
 
-// Global Variables
+const TEXT_PARAMS = {
+  font:  '18px Open Sans',
+  color: '#000',
+  line1: 'Click to make a',
+  line2: 'ripple, scroll to',
+  line3: 'explore'
+};
+
+// Keys that could scroll that we capture the events of and scrolling params
+const scrollKeys = {32: 1, 37: 1, 38: 1, 39: 1, 40: 1};
+const scrollSpeed = 750;
+const scrollTimeout = 750;
+
+/****************************************************************************
+ *****                         Global Variables                         *****
+ ****************************************************************************/
+
 var canvas;
 var ctx;
+var scrolling;
+var pageLoadScroll;
 
 var canvasWidth;
 var canvasHeight;
@@ -75,17 +97,63 @@ var centerX;
 var centerY;
 var points;
 
-var chaosOn;
-var rippleRelax;
-var rippleTimeLeft;
+/****************************************************************************
+ *****                         Scrolling Logic                          *****
+ ****************************************************************************/
 
-// Main functions
+function scrollTo(height) {
+  scrolling = true;
+  $('html, body').animate({scrollTop: height}, scrollSpeed, function() {
+    setTimeout(function() { scrolling = false; }, scrollTimeout);
+  });
+}
+
+function handleScrolling(e) {
+  e = e || window.event;
+  if (e.handleScrolling) {
+    e.handleScrolling();
+  }
+  e.returnValue = false;
+
+  if (pageLoadScroll) {
+    setTimeout(function() { pageLoadScroll = false; }, scrollTimeout/2);
+    return;
+  }
+
+  if (!scrolling) {
+    if ($(window).scrollTop() <= window.innerHeight - 1) {
+      scrollTo(window.innerHeight);
+    } else {
+      scrollTo(0);
+    }
+  }
+}
+
+function handleScrollingForScrollKeys(e) {
+  if (scrollKeys[e.keyCode]) {
+      handleScrolling(e);
+      return false;
+  }
+}
+
+window.onwheel        = handleScrolling;
+window.onmousewheel   = handleScrolling;
+window.ontouchmove    = handleScrolling;
+document.onmousewheel = handleScrolling
+document.onkeydown    = handleScrollingForScrollKeys;
+
+/****************************************************************************
+ *****                         Init Functions                           *****
+ ****************************************************************************/
 
 function init() {
   canvas = document.getElementById('canvas');
   ctx = canvas.getContext('2d');
 
-  // Initial "resize" (instantiates variables)
+  scrolling = false;
+  pageLoadScroll = true;
+
+  // Initial "resize" (instantiates global variables and fixes canvas size)
   resizeCanvas();
 
   // Adds resize event handling
@@ -105,16 +173,15 @@ function init() {
 }
 
 function initMovementMode() {
+  var chaosOn = false;
   var chaos = 1;
-
-  chaosOn = false;
 
   canvas.addEventListener('mousemove', function(event) {
     if (chaosOn) {
-      var distanceFromCenter = Math.sqrt(Math.pow((event.x-centerX)/xDistanceWeight, 2) +
-                                         Math.pow((event.y-centerY), 2));
+      var distance = Math.sqrt(Math.pow((event.x-centerX)/xDistWeight, 2) +
+                               Math.pow((event.y-centerY), 2));
 
-      chaos = boundLower(distanceFromCenter*chaosFactor/spacing, 1);
+      chaos = boundLower(distance*chaosFactor/spacing, 1);
       draw(chaos);
     }
   });
@@ -125,30 +192,35 @@ function initMovementMode() {
 }
 
 function initRippleMode() {
+  var rippleTimeLeft = 0;
   var chaos = 1;
 
-  rippleTimeLeft = 0;
+  canvas.addEventListener('mousedown', function(event) {
+    rippleTimeLeft = timeToRipple;
+    draw(chaos);
+  });
 
   window.setInterval(function() {
     if (rippleTimeLeft) {
       rippleTimeLeft--;
 
-      chaos = maxRippleTime - (1/maxRippleTime) + 1
-             - (rippleTimeLeft*maxRippleTime)/rippleTime;
+      chaos = maxRippleTime - (rippleTimeLeft*maxRippleTime)/timeToRipple + 1;
       draw(chaos);
     }
-  }, timerIntervalRipple);
-
-  canvas.addEventListener('mousedown', function(event) {
-    rippleTimeLeft = rippleTime;
-    draw(chaos);
-  });
+  }, rippleIntervalTime);
 }
 
 function initHeavyRippleMode() {
   var chaos = 1;
 
   var distance = maxDistance;
+
+  canvas.addEventListener('mousedown', function(event) {
+    distance = boundLower(distance/clickRippleDec, 1);
+
+    chaos = boundLower(distance*chaosFactor/spacing, 1);
+    draw(chaos);
+  });
 
   window.setInterval(function() {
     var newDistance = boundUpper(distance*timerRippleInc, maxDistance);
@@ -159,15 +231,12 @@ function initHeavyRippleMode() {
       chaos = boundLower(distance*chaosFactor/spacing, 1);
       draw(chaos);
     }
-  }, timerIntervalHeavy);
-
-  canvas.addEventListener('mousedown', function(event) {
-    distance = boundLower(distance/clickRippleDec, 1);
-
-    chaos = boundLower(distance*chaosFactor/spacing, 1);
-    draw(chaos);
-  });
+  }, heavyIntervalTime);
 }
+
+/****************************************************************************
+ *****                      Helper Event Functions                      *****
+ ****************************************************************************/
 
 function resizeCanvas() {
   canvas.width  = window.innerWidth;
@@ -208,24 +277,27 @@ function draw(chaos) {
       var r2 = getRandInRange(-piOver2, piOver2);
       points[i][j].x = (i*spacing) + (spacing/chaos) * Math.cos(r1) - spacing;
       points[i][j].y = (j*spacing) + (spacing/chaos) * Math.cos(r2) - spacing;
-      // points[i][j].x = (i*spacing) - spacing;
-      // points[i][j].y = (j*spacing) - spacing;
     }
   }
 
   ctx.textBaseline = 'middle';
-  ctx.font = '18px Open Sans';
-  ctx.fillStyle = '#000';
+  ctx.font = TEXT_PARAMS.font;
+  ctx.fillStyle = TEXT_PARAMS.color;
   ctx.textAlign = 'left'
-  ctx.fillText('Click to ripple,', xEmptyStart*spacing+xEmptyExtra, yEmptyStart*spacing+yEmptyExtra);
-  ctx.fillText('scroll to explore', xEmptyStart*spacing+xEmptyExtra, (yEmptyStart+1)*spacing+yEmptyExtra);
-  ctx.fillText('a new world', xEmptyStart*spacing+xEmptyExtra, (yEmptyStart+2)*spacing+yEmptyExtra);
+
+  ctx.fillText(TEXT_PARAMS.line1, TEXT_LOC.xStart*spacing+TEXT_LOC.xExtra,
+                                  TEXT_LOC.yStart*spacing+TEXT_LOC.yExtra);
+  ctx.fillText(TEXT_PARAMS.line2, TEXT_LOC.xStart*spacing+TEXT_LOC.xExtra,
+                                  (TEXT_LOC.yStart+1)*spacing+TEXT_LOC.yExtra);
+  ctx.fillText(TEXT_PARAMS.line3, TEXT_LOC.xStart*spacing+TEXT_LOC.xExtra,
+                                  (TEXT_LOC.yStart+2)*spacing+TEXT_LOC.yExtra);
 
   // Draw and fill the quadrilaterals
   for (var i = 0; i < points.length - 1; i++) {
     for (var j = 0; j < points[i].length - 1; j++) {
-      if (i >= xEmptyStart && i <= xEmptyEnd &&
-          j >= yEmptyStart && j <= yEmptyEnd) {
+      // Fill text squares white, fill all other squares with specified color
+      if (i >= TEXT_LOC.xStart && i <= TEXT_LOC.xEnd &&
+          j >= TEXT_LOC.yStart && j <= TEXT_LOC.yEnd) {
         ctx.fillStyle = '#FFF';
       } else {
         ctx.fillStyle = points[i][j].c;
@@ -245,7 +317,9 @@ function draw(chaos) {
   }
 }
 
-// Small Helper Functions
+/****************************************************************************
+ *****                      Small Helper Functions                      *****
+ ****************************************************************************/
 
 function boundLower(val, min) {
   return (val < min) ? min : val;

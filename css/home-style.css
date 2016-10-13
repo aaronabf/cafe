@@ -28,16 +28,17 @@
   margin: 0;
   padding: 0;
 
-  text-align: center;
+  text-align:  center;
+  font-weight: normal;
   font-family: Open Sans, Sans-Serif;
 }
 
 html, body {
   width: 100%;
   height: 100%;
-  background-size: 100%;
 }
 
+/* Ensure the canvas element will not highlight when clicked */
 canvas {
   -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -48,10 +49,12 @@ canvas {
   outline: none;
 }
 
+/* Used to not display the content until the canvas finishes loading */
 .preload * {
   opacity: 0.0;
 }
 
+/* Ensures the entire website is exactly 2 * window height */
 .padFullPage{
   position: absolute;
   top: 0;
@@ -62,28 +65,36 @@ canvas {
 }
 
 #topHeader {
-  padding-top: 50px;
+  padding-top: 5%;
   font-size: 5em;
 }
 
 #subHeader {
-  padding-top: 10px;
+  padding-top: 1%;
   font-size: 1em;
-  color: #CCC;
+  color: #AAA;
 }
 
-#viewResumeHover, #photoLink {
-  margin: 60px 80px 60px 60px;
+#resumeLink, #photoLink {
+  margin: 6% 7% 3%;
+  padding: 10px;
+  display: inline-block;
+  border-width: 3px;
+  border-style: solid;
 }
 
-#viewResumeHover a, #photoLink a {
+/* Get rid of link text decorations */
+#resumeLink a, #photoLink a {
   color: inherit;
   text-decoration: none;
 }
 
-#miniResume {
-  margin-top: 10px;
-  margin-bottom: 10px;
+#subButtonText {
+  font-size: 0.6em;
+  color: #999;
+}
+
+#resumePrev {
   line-height: 175%;
   color: #CCC;
 
@@ -96,27 +107,26 @@ canvas {
           transition: all 500ms ease-in-out;
 }
 
-#viewResumeHover:hover ~ #miniResume {
+#resumeLink:hover ~ #resumePrev {
   opacity: 1.0;
 }
 
-#viewResumeHover:active ~ #miniResume {
+#resumeLink:active ~ #resumePrev {
   opacity: 1.0;
-}
-
-.border {
-  padding: 10px;
-  display: inline-block;
-  border-width: 3px;
-  border-style: solid;
 }
 
 .rMain {
   color: #000;
 }
 
+/* Fancy little trick to obfuscate an email from spammers */
 .obfuscateEmail:before {
   content: attr(dsite) "\0040" attr(duser);
   unicode-bidi: bidi-override;
   direction: rtl;
 }
+
+/* Not needed right now
+@media screen and (max-width: 480px) {
+}
+*/
