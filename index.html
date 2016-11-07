@@ -34,17 +34,22 @@
     <link rel="stylesheet" type="text/css" charset="utf-8" href="css/home-style.css" />
   </head>
   <body onload="init();">
-    <canvas id="canvas" tabindex="1"></canvas>
 
-    <span class="padFullPage"></span>
-
-    <div id="content" class="preload">
-
+    <div id="content">
       <div id="topHeader">Hi, I'm Aaron</div>
-      <div id="subHeader">(this website is still under construction)</div>
 
-      <div id="resumeLink"><a target="_blank" href ="https://drive.google.com/file/d/0B3BODpfnLYrDOWZRWm81WHRzYVk">View Resume<div id="subButtonText">Hover/hold for a preview</div></a></div>
-      <div id="photoLink"><a href="photography.html">Photography<div id="subButtonText">Go to the site</div></a></div>
+      <div id="resumeLink">
+        <a target="_blank" href ="https://drive.google.com/file/d/0B3BODpfnLYrDOWZRWm81WHRzYVk">
+          <div class="mainButtonText">View Resume</div>
+          <div class="subButtonText">Hover/hold for a preview</div>
+        </a>
+      </div>
+      <div id="photoLink">
+        <a href="photography.html">
+          <div class="mainButtonText">Photography</div>
+          <div class="subButtonText">Go to the site</div>
+        </a>
+      </div>
 
       <div id="resumePrev">
         <span class="rMain">Aaron Friedlander</span> <br>
@@ -54,8 +59,9 @@
         <span class="rMain">C</span> &#x025AA <span class="rMain">Java</span> &#x025AA Go &#x025AA <span class="rMain">C++</span> &#x025AA Javascript &#x025AA PHP <br>
         (FAF) TFT-ZFVZ ▪︎ <span class="rMain obfuscateEmail" duser="fba.noraa" dsite="moc.liamg"></span>
       </div>
-
     </div>
+
+    <canvas id="canvas" tabindex="1"></canvas>
 
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/homepage.js"></script>

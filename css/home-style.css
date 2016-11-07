@@ -24,6 +24,8 @@
   |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 */
 
+/********************************** Global ***********************************/
+
 * {
   margin: 0;
   padding: 0;
@@ -38,8 +40,16 @@ html, body {
   height: 100%;
 }
 
-/* Ensure the canvas element will not highlight when clicked */
+/* Get rid of link text decorations */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/********************************** Canvas ***********************************/
+
 canvas {
+  /* Ensure the canvas element will not highlight when clicked */
   -webkit-touch-callout: none;
     -webkit-user-select: none;
        -moz-user-select: none;
@@ -47,76 +57,65 @@ canvas {
             user-select: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   outline: none;
-}
 
-/* Used to not display the content until the canvas finishes loading */
-.preload * {
-  opacity: 0.0;
-}
-
-/* Ensures the entire website is exactly 2 * window height */
-.padFullPage{
+  /* Fill the canvas to half the window. */
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 200%;
-  z-index: -999;
+  left: 50%;
+  z-index: 0;
+}
+
+/************************************ Text ***********************************/
+
+#content {
+  position: fixed;
+  left: 0px;
+  width: 50%;
+  margin-top: 195px;
+  z-index: 1;
 }
 
 #topHeader {
-  padding-top: 5%;
-  font-size: 5em;
-}
-
-#subHeader {
-  padding-top: 1%;
-  font-size: 1em;
-  color: #AAA;
+  font-size: 3em;
 }
 
 #resumeLink, #photoLink {
-  margin: 6% 7% 3%;
-  padding: 10px;
+  margin: 6% 7% 8%;
+  width: 140px;
+  padding: 12px 0 12px 0;
+
   display: inline-block;
-  border-width: 3px;
-  border-style: solid;
+  box-shadow: 0 0 5px #888;
+
 }
 
-/* Get rid of link text decorations */
-#resumeLink a, #photoLink a {
-  color: inherit;
-  text-decoration: none;
+.mainButtonText {
+  font-size: 0.9em;
+  color: #444;
 }
 
-#subButtonText {
+.subButtonText {
   font-size: 0.6em;
   color: #999;
 }
 
 #resumePrev {
   line-height: 175%;
-  color: #CCC;
+  color: #BBB;
 
-  opacity: 0.0;
-
-  -webkit-transition: all 500ms ease-in-out;
-     -moz-transition: all 500ms ease-in-out;
-      -ms-transition: all 500ms ease-in-out;
-       -o-transition: all 500ms ease-in-out;
-          transition: all 500ms ease-in-out;
+  display: none;
 }
 
 #resumeLink:hover ~ #resumePrev {
-  opacity: 1.0;
+  display: block;
 }
 
 #resumeLink:active ~ #resumePrev {
-  opacity: 1.0;
+  display: block;
 }
 
 .rMain {
-  color: #000;
+  color: #444;
 }
 
 /* Fancy little trick to obfuscate an email from spammers */
@@ -126,7 +125,18 @@ canvas {
   direction: rtl;
 }
 
-/* Not needed right now
+/******************************** Media Query ********************************/
+
 @media screen and (max-width: 480px) {
+  .subButtonText {
+    display: none;
+  }
+
+  #resumeLink:hover ~ #resumePrev {
+    display: none;
+  }
+
+  #resumeLink:active ~ #resumePrev {
+    display: none;
+  }
 }
-*/

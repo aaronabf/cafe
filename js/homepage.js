@@ -42,7 +42,7 @@ const mode = MODE.RIPPLE;
 // General Constants
 const spacing     = 28;   // lower => more shapes
 const minAlphaVal = 0.2;
-const maxAlphaVal = 0.5;
+const maxAlphaVal = 0.3;
 const piOver2     = Math.PI/2;
 
 // Constants for movement mode
@@ -70,11 +70,12 @@ const TEXT_LOC = {
 };
 
 const TEXT_PARAMS = {
-  font:  '18px Open Sans',
-  color: '#000',
-  line1: 'Click to make a',
-  line2: 'ripple, scroll to',
-  line3: 'explore'
+  hasText: false,
+  font:   '18px Open Sans',
+  color:  '#000',
+  line1:  'Click to make a',
+  line2:  'ripple, scroll to',
+  line3:  'explore'
 };
 
 // Keys that could scroll that we capture the events of and scrolling params
@@ -100,6 +101,11 @@ var points;
 /****************************************************************************
  *****                         Scrolling Logic                          *****
  ****************************************************************************/
+
+/*
+
+  The scrolling logic below is no longer needed for the current homepage design
+
 
 function scrollTo(height) {
   scrolling = true;
@@ -141,6 +147,7 @@ window.onmousewheel   = handleScrolling;
 window.ontouchmove    = handleScrolling;
 document.onmousewheel = handleScrolling
 document.onkeydown    = handleScrollingForScrollKeys;
+*/
 
 /****************************************************************************
  *****                         Init Functions                           *****
@@ -167,9 +174,6 @@ function init() {
   } else if (mode === MODE.HEAVYRIPPLE) {
     initHeavyRippleMode();
   }
-
-  // Ensure the canvas finishes loading before we display the content section
-  $("#content").removeClass("preload");
 }
 
 function initMovementMode() {
@@ -280,23 +284,26 @@ function draw(chaos) {
     }
   }
 
-  ctx.textBaseline = 'middle';
-  ctx.font = TEXT_PARAMS.font;
-  ctx.fillStyle = TEXT_PARAMS.color;
-  ctx.textAlign = 'left'
+  if (TEXT_PARAMS.hasText) {
+    ctx.textBaseline = 'middle';
+    ctx.font = TEXT_PARAMS.font;
+    ctx.fillStyle = TEXT_PARAMS.color;
+    ctx.textAlign = 'left'
 
-  ctx.fillText(TEXT_PARAMS.line1, TEXT_LOC.xStart*spacing+TEXT_LOC.xExtra,
-                                  TEXT_LOC.yStart*spacing+TEXT_LOC.yExtra);
-  ctx.fillText(TEXT_PARAMS.line2, TEXT_LOC.xStart*spacing+TEXT_LOC.xExtra,
-                                  (TEXT_LOC.yStart+1)*spacing+TEXT_LOC.yExtra);
-  ctx.fillText(TEXT_PARAMS.line3, TEXT_LOC.xStart*spacing+TEXT_LOC.xExtra,
-                                  (TEXT_LOC.yStart+2)*spacing+TEXT_LOC.yExtra);
+    ctx.fillText(TEXT_PARAMS.line1, TEXT_LOC.xStart*spacing+TEXT_LOC.xExtra,
+                                    TEXT_LOC.yStart*spacing+TEXT_LOC.yExtra);
+    ctx.fillText(TEXT_PARAMS.line2, TEXT_LOC.xStart*spacing+TEXT_LOC.xExtra,
+                                    (TEXT_LOC.yStart+1)*spacing+TEXT_LOC.yExtra);
+    ctx.fillText(TEXT_PARAMS.line3, TEXT_LOC.xStart*spacing+TEXT_LOC.xExtra,
+                                    (TEXT_LOC.yStart+2)*spacing+TEXT_LOC.yExtra);
+  }
 
   // Draw and fill the quadrilaterals
   for (var i = 0; i < points.length - 1; i++) {
     for (var j = 0; j < points[i].length - 1; j++) {
       // Fill text squares white, fill all other squares with specified color
-      if (i >= TEXT_LOC.xStart && i <= TEXT_LOC.xEnd &&
+      if (TEXT_PARAMS.hasText &&
+          i >= TEXT_LOC.xStart && i <= TEXT_LOC.xEnd &&
           j >= TEXT_LOC.yStart && j <= TEXT_LOC.yEnd) {
         ctx.fillStyle = '#FFF';
       } else {
