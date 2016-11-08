@@ -68,11 +68,34 @@ canvas {
   /* Fill the canvas to slightly over half the window */
   position: absolute;
   top: 0;
-  left: 46%;
+  left: 50%;
   z-index: 0;
 }
 
 /************************************ Text ***********************************/
+
+ #content {
+   position: fixed;
+   left: 0;
+   width: 50%;
+   margin-top: 195px;
+   z-index: 1;
+ }
+
+ #topHeader {
+   font-size: 45px;
+ }
+
+ #resumeLink, #photoLink {
+  margin: 10% 8% 8%;
+  width: 150px;
+  padding: 12px 0 12px 0;
+
+  display: inline-block;
+  box-shadow: 0 0 5px #888;
+}
+
+/*                      Alternative Design
 
 #content {
   position: fixed;
@@ -105,14 +128,15 @@ canvas {
   padding: 12px 0 12px 0;
   box-shadow: 0 0 5px #888;
 }
+*/
 
 .mainButtonText {
-  font-size: 15px;
+  font-size: 14px;
   color: #222;
 }
 
 .subButtonText {
-  font-size: 12px;
+  font-size: 11px;
   color: #888;
 }
 

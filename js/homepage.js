@@ -42,7 +42,7 @@ const mode = MODE.RIPPLE;
 // General Constants
 const spacing       = 28;   // lower => more and smaller squares
 const minAlphaVal   = 0.2;  // this
-const maxAlphaVal   = 0.4;  //  ^ and this bound brightness of squares
+const maxAlphaVal   = 0.3;  //  ^ and this bound brightness of squares
 const piOver2Approx = 1.35; // closer to pi/2 => sharper angels
 
 // Constants for movement mode
