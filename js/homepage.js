@@ -42,7 +42,7 @@ const mode = MODE.RIPPLE;
 // General Constants
 const spacing       = 28;   // lower => more and smaller squares
 const minAlphaVal   = 0.2;  // this
-const maxAlphaVal   = 0.3;  //  ^ and this bound brightness of squares
+const maxAlphaVal   = 0.4;  //  ^ and this bound brightness of squares
 const piOver2Approx = 1.35; // closer to pi/2 => sharper angels
 
 // Constants for movement mode
@@ -253,10 +253,12 @@ function draw(chaos) {
   // Draw and fill the quadrilaterals
   for (var i = 0; i < points.length - 1; i++) {
     for (var j = 0; j < points[i].length - 1; j++) {
-      // Fill text squares white; fill all other squares with specified color
-      if (TEXT_PARAMS.hasText &&
-          i >= TEXT_LOC.xStart && i <= TEXT_LOC.xEnd &&
-          j >= TEXT_LOC.yStart && j <= TEXT_LOC.yEnd) {
+      // If text is enabled then fill text squares white; fill all other
+      // squares with specified color aside from the first column
+      if ((TEXT_PARAMS.hasText &&
+           i >= TEXT_LOC.xStart && i <= TEXT_LOC.xEnd &&
+           j >= TEXT_LOC.yStart && j <= TEXT_LOC.yEnd) ||
+          (i === 0)) {
         ctx.fillStyle = "#FFF";
       } else {
         ctx.fillStyle = points[i][j].c;

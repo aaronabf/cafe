@@ -29,21 +29,28 @@
 * {
   margin: 0;
   padding: 0;
-
-  text-align:  center;
-  font-weight: normal;
-  font-family: Open Sans, Sans-Serif;
 }
 
 html, body {
   width: 100%;
   height: 100%;
+
+  text-align:  center;
+  font-weight: normal;
+  font-family: Open Sans, Sans-Serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* Get rid of link text decorations */
 a {
-  color: inherit;
   text-decoration: none;
+  color: #5F9FDA;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 /********************************** Canvas ***********************************/
@@ -58,10 +65,10 @@ canvas {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   outline: none;
 
-  /* Fill the canvas to half the window. */
+  /* Fill the canvas to slightly over half the window */
   position: absolute;
   top: 0;
-  left: 50%;
+  left: 46%;
   z-index: 0;
 }
 
@@ -70,52 +77,43 @@ canvas {
 #content {
   position: fixed;
   left: 0px;
-  width: 50%;
-  margin-top: 195px;
+  width: 45%;
+  margin-top: 160px;
   z-index: 1;
+
+  color: #111;
+
+  padding: 16px 14px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+
+  -webkit-box-shadow: 2px 0px 20px -5px rgba(0,0,0,0.7);
+     -moz-box-shadow: 2px 0px 20px -5px rgba(0,0,0,0.7);
+          box-shadow: 2px 0px 20px -5px rgba(0,0,0,0.7);
 }
 
 #topHeader {
-  font-size: 3em;
+  width: 200px;
+  font-size: 40px;
 }
 
 #resumeLink, #photoLink {
-  margin: 6% 7% 8%;
-  width: 140px;
+  margin: auto;
+  width: 150px;
   padding: 12px 0 12px 0;
-
-  display: inline-block;
   box-shadow: 0 0 5px #888;
-
 }
 
 .mainButtonText {
-  font-size: 0.9em;
-  color: #444;
+  font-size: 15px;
+  color: #222;
 }
 
 .subButtonText {
-  font-size: 0.6em;
-  color: #999;
-}
-
-#resumePrev {
-  line-height: 175%;
-  color: #BBB;
-
-  display: none;
-}
-
-#resumeLink:hover ~ #resumePrev {
-  display: block;
-}
-
-#resumeLink:active ~ #resumePrev {
-  display: block;
-}
-
-.rMain {
-  color: #444;
+  font-size: 12px;
+  color: #888;
 }
 
 /* Fancy little trick to obfuscate an email from spammers */
@@ -129,14 +127,6 @@ canvas {
 
 @media screen and (max-width: 480px) {
   .subButtonText {
-    display: none;
-  }
-
-  #resumeLink:hover ~ #resumePrev {
-    display: none;
-  }
-
-  #resumeLink:active ~ #resumePrev {
     display: none;
   }
 }
