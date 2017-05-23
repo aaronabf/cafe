@@ -76,9 +76,18 @@ html, body {
 #images {
   float: right;
   padding: 3% 8%;
+  width: 550px;
+  height: 550px;
 }
 
-img {
+.verticaltext {
+  color: #666;
+  font-size: 3em;
+  -webkit-transform: rotate(-90deg) translateX(177px) translateY(-543px);
+  -webkit-transform-origin: 100% 100%;
+}
+
+#images img {
   max-width: 100%;
   height: auto;
   width: auto;
@@ -93,7 +102,7 @@ img {
           transition: all 0.5s ease;
 }
 
-img:hover {
+#images img:hover {
   -webkit-filter: blur(6px) grayscale(100%);
      -moz-filter: blur(6px) grayscale(100%);
       -ms-filter: blur(6px) grayscale(100%);

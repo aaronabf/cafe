@@ -78,8 +78,8 @@ body {
 #nav a:link, #nav a:visited, #nav a:active {
   color: white;
   text-decoration: none;
-  padding: 9px 15px;
-  border: 1.5px solid white;
+  padding: 9px 15px 9px 12px;
+  border: 2px solid rgba(194,196,198,0);
   -webkit-transition: all 275ms linear;
      -moz-transition: all 275ms linear;
       -ms-transition: all 275ms linear;
@@ -88,9 +88,8 @@ body {
 }
 
 #nav a:hover {
-  color: rgba(224,226,228,0.9);
-  text-decoration: none;
-  border: 1.5px solid rgba(194,196,198,0.7);
+  color: rgba(194,196,198,0.7);
+  border: 2px solid rgba(194,196,198,0.7);
   -webkit-transition: all 275ms linear;
      -moz-transition: all 275ms linear;
       -ms-transition: all 275ms linear;
@@ -128,7 +127,6 @@ body {
   }
 
   #nav a:hover {
-    color: white;
     color: rgba(244,246,248,0.7);
     border: 1.5px solid rgba(244,246,248,0.7);
   }
