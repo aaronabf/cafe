@@ -1,5 +1,7 @@
 /*
-        Why are you here? Go away.
+    "In the depth of winter, I finally learned that within me there lay an invincible summer."
+        - Albert Camus
+
 
              *     ,MMM8&&&.            *
                   MMMM88&&&&&    .
@@ -41,6 +43,7 @@ const mode = MODE.RIPPLE;
 
 // General Constants
 const spacing       = 28;   // lower => more and smaller squares
+const padding       = 3;    // pad out the canvas 3x NW and 6x SE
 const minAlphaVal   = 0.2;  // this
 const maxAlphaVal   = 0.3;  //  ^ and this bound brightness of squares
 const piOver2Approx = 1.35; // closer to pi/2 => sharper angels
@@ -63,21 +66,21 @@ const heavyIntervalTime   = 20;   // do not change this without reviewing code
 
 // If we have text, what the text is and its formatting
 const TEXT_PARAMS = {
-  hasText: false,
+  hasText: true,
   font:   "18px Open Sans",
   color:  "#000",
-  line1:  "Click to make a",
-  line2:  "ripple, scroll to",
-  line3:  "explore"
+  line1:  "",
+  line2:  "",
+  line3:  ""
 };
 
 // If we have text, where we place the text
 const TEXT_LOC = {
-  xStart: 5,
-  xEnd:   10,
+  xStart: 3,
+  xEnd:   11,
   xExtra: 10,
-  yStart: 5,
-  yEnd:   8,
+  yStart: 10,
+  yEnd:   13,
   yExtra: 20
 };
 
@@ -201,7 +204,7 @@ function resizeCanvas() {
   // Generate a point cloud. For now we just generate random colors
   // Note: We must recreate this array each time the window is resized
   points = [];
-  var extraPadding = 3*spacing; // pads out the bottom and right sides
+  var extraPadding = 2*padding*spacing; // pads out the bottom and right sides
   for (var i = 0; i < canvasWidth + extraPadding; i += spacing) {
     var x = i / spacing;
     points[x] = [];
@@ -227,8 +230,8 @@ function draw(chaos) {
     for (var j = 0; j < points[i].length - 1; j++) {
       var r1 = getRandInRange(-piOver2Approx, piOver2Approx);
       var r2 = getRandInRange(-piOver2Approx, piOver2Approx);
-      points[i][j].x = (i*spacing) + (spacing/chaos) * Math.cos(r1) - spacing;
-      points[i][j].y = (j*spacing) + (spacing/chaos) * Math.cos(r2) - spacing;
+      points[i][j].x = (i*spacing) + ((spacing)/chaos) * Math.cos(r1) - padding*spacing;
+      points[i][j].y = (j*spacing) + ((spacing)/chaos) * Math.cos(r2) - padding*spacing;
     }
   }
 
@@ -307,7 +310,7 @@ function getRandomColor(alphaMin, alphaMax) {
 
 /*
                   The scrolling logic below is no longer
-                  needed for the current homepage design
+                  needed for the current page design.
 
 
 function scrollTo(height) {

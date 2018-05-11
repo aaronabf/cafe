@@ -25,7 +25,7 @@
   |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 */
 
-html, body {
+body {
   margin: 0;
   padding: 0;
 
@@ -54,9 +54,10 @@ html, body {
           filter: none !important;
 }
 
-#text {
+#header {
+  position: absolute;
   float: left;
-  padding: 3%;
+  margin: 3%;
   text-align: right;
   color: #BBB;
 }
@@ -73,6 +74,37 @@ html, body {
   font-size: 100%;
 }
 
+#use {
+  position: absolute;
+  float: left;
+  bottom: 0;
+  margin: 20% 0 0 3%;
+  width: 27%;
+  text-align: left;
+  font-size: 80%;
+  color: #666;
+  text-decoration: none;
+}
+
+#use-header {
+  margin-bottom: 30;
+}
+
+#use-body {
+  display: none;
+
+  margin-bottom: 30;
+}
+
+#use-close {
+  float: right;
+  font-weight: bold;
+}
+
+#use-footer {
+  margin-bottom: 30;
+}
+
 #images {
   float: right;
   padding: 3% 8%;
@@ -81,9 +113,10 @@ html, body {
 }
 
 .verticaltext {
-  color: #666;
+  color: #f44;
   font-size: 3em;
-  -webkit-transform: rotate(-90deg) translateX(177px) translateY(-543px);
+  -webkit-transform: rotate(-90deg) translateX(177px) translateY(5px);
+  /*-webkit-transform: rotate(-90deg) translateX(177px) translateY(-543px);*/
   -webkit-transform-origin: 100% 100%;
 }
 
@@ -108,4 +141,44 @@ html, body {
       -ms-filter: blur(6px) grayscale(100%);
        -o-filter: blur(6px) grayscale(100%);
           filter: blur(6px) grayscale(100%);
+}
+
+/* Fancy little trick to obfuscate an email from spammers */
+.obfuscateEmail:before {
+  content: attr(dsite) "\0040" attr(duser);
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+
+@media only screen and (max-width: 767px) {
+  #use {
+    right: 0;
+    bottom: 2%;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    padding: 1%;
+    font-size: 60%;
+    text-align: center;
+  }
+
+  #use-header {
+    padding-bottom: 4px;
+    margin-bottom: 0;
+  }
+
+  #use-body {
+    position: absolute;
+    left: 3%;
+    bottom: 3%;
+    padding: 10px;
+    width: 50%;
+    text-align: left;
+    background-color: white;
+    border: 1.5px solid #666;
+  }
+
+  #use-footer {
+    margin-bottom: 0;
+  }
 }

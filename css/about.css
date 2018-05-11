@@ -38,63 +38,35 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-
-  background-size: 100% 100%;;
-  background-repeat: no-repeat;
-
-  /* Some awesome black magic; the technique and explanation can be found here:
-   * css-tricks DOT com SLASH the-blur-up-technique-for-loading-background-images */
-  background-image: url(data:image/svg+xml;charset=utf-8,%0A%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%0A%20%20%20%20%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%0A%20%20%20%20%20width%3D%221500%22%20height%3D%22823%22%0A%20%20%20%20%20viewBox%3D%220%200%201500%20823%22%3E%0A%20%20%3Cfilter%20id%3D%22blur%22%20filterUnits%3D%22userSpaceOnUse%22%20color-interpolation-filters%3D%22sRGB%22%3E%0A%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%2220%2020%22%20edgeMode%3D%22duplicate%22%20/%3E%0A%20%20%20%20%3CfeComponentTransfer%3E%0A%20%20%20%20%20%20%3CfeFuncA%20type%3D%22discrete%22%20tableValues%3D%221%201%22%20/%3E%0A%20%20%20%20%3C/feComponentTransfer%3E%0A%20%20%3C/filter%3E%0A%20%20%3Cimage%20filter%3D%22url%28%23blur%29%22%0A%20%20%20%20%20%20%20%20%20xlink%3Ahref%3D%22data%3Aimage/jpeg%3Bbase64%2C/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAWACwDASIAAhEBAxEB/8QAGwAAAgMAAwAAAAAAAAAAAAAAAAcDBQgCBAb/xAAsEAABAwMDAgUDBQAAAAAAAAACAQMEBQYRAAcSEyEIFBUxQSNRchYlMmFx/8QAFwEAAwEAAAAAAAAAAAAAAAAAAwQFAv/EACERAAICAgIBBQAAAAAAAAAAAAECAAMRIRIicRRBYZGx/9oADAMBAAIRAxEAPwDM9uPNAYAjbfdf5EGnvtU+1PotUp8iG1KhvG4z7IigahkVQvjGNLe2Njdwqi42H6cZhumaIi1CaDDn+IirrQO2vhv3NoVu1WZLagwwckg4MfqIrgYHHUyeBxpdhy0fn8lBH4j6nSo9QbsOjtPPxoFXaaFWZb3TXLTi9xQlyi99aO23vefuDbMw62UiwavbrrDrbkOIgN+RkphppBX4ymU0oaFsNXGIEj1SbT+rKd6lMd822S9b35clyKuKqd0Tlrz103zuJthGkT6hOhyp9Uk8pDcuKLrTqhhRDHtxT4RNSS9tSBiMj38ymxFz4TU27QKvTOABJuyoy/7lNoGdcqhXae/NdJ50VJC4oSfKfC6S+2gXJXdsLUvie/Eiz6jCJ+TyZ+m2CuHwUUVVVO2qu+1uRa2MgJcN4JLIuicZ9DBUyo9lT8dUEdlrVnGMxFK0Zj23MpwvEGt5UwfUbSp80DAebT0gxHiX2wnvqSfudZlv0+JLjWZ+/K91mJsmScoGCH4Vt4iF1PyTRo0t6m1X4514EGlaspJEt5viyr16+hO1amU2O1RZHmoDtMi+XdYe4kCmKCSDlUXU26G8tu3hHpjDlmtRmaay4QxwfyC8lzyVcZM/uRaNGma+wIM22mGI+KJfm47m39JhRabaVKocOE1F6quyZUkmxHCKg4bASxque3jiUVqPCao7f0QUTcEUDqFyJVJUz7rnRo0RnYqATBqi5Op//9k%3D%22%0A%20%20%20%20%20%20%20%20%20x%3D%220%22%20y%3D%220%22%0A%20%20%20%20%20%20%20%20%20height%3D%22100%25%22%20width%3D%22100%25%22/%3E%0A%3C/svg%3E%0A%0A);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: #c3aaa3;
 }
 
+canvas {
+  /* Ensure the canvas element will not highlight when clicked */
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  outline: none;
 
-#nav {
+  /* Fill the canvas to slightly over half the window */
   position: absolute;
-  top: 6%;
-  left: 10%;
-  color: white;
-  font-size: 1.5em;
-  text-align: left;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }
-
-#nav a:link, #nav a:visited, #nav a:active {
-  color: white;
-  text-decoration: none;
-  margin: 40px;
-  padding: 9px 15px 9px 12px;
-  border: 2px solid rgba(194,196,198,0.7);
-  -webkit-transition: all 275ms linear;
-     -moz-transition: all 275ms linear;
-      -ms-transition: all 275ms linear;
-       -o-transition: all 275ms linear;
-          transition: all 275ms linear;
-}
-
-#nav a:hover {
-  color: rgba(194,196,198,0.7);
-  border: 2px solid rgba(194,196,198,0.7);
-  -webkit-transition: all 275ms linear;
-     -moz-transition: all 275ms linear;
-      -ms-transition: all 275ms linear;
-       -o-transition: all 275ms linear;
-          transition: all 275ms linear;
-}
-
 
 #content {
-  position: absolute;
-  top: 20%;
-  left: 11%;
-  color: white;
-  font-size: 1.5em;
-  text-align: left;
-  line-height: 80px;
+  position: fixed;
+  margin-left: 42px;
+  margin-top: 224px;
+  z-index: 1;
 }
 
-@media only screen and (max-width: 767px) {
+/* Fancy little trick to obfuscate an email from spammers */
+.obfuscateEmail:before {
+  content: attr(dsite) "\0040" attr(duser);
+  unicode-bidi: bidi-override;
+  direction: rtl;
 }

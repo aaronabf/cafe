@@ -78,7 +78,7 @@ body {
 #nav a:link, #nav a:visited, #nav a:active {
   color: white;
   text-decoration: none;
-  padding: 9px 15px 9px 12px;
+  padding: 9px 13px 9px 12px;
   border: 2px solid rgba(194,196,198,0);
   -webkit-transition: all 275ms linear;
      -moz-transition: all 275ms linear;
@@ -101,9 +101,9 @@ body {
   #title {
     position: absolute;
     top: 4%;
-    left: 18%;
-    color: black;
-    font-size: 2.5em;
+    left: 8%;
+    color: rgba(10,10,10,0.8);
+    font-size: 2.3em;
   }
 
   #title br {
@@ -112,22 +112,23 @@ body {
 
   #nav {
     position: absolute;
-    top: 22%;
-    left: 18%;
+    top: 20%;
+    left: 8%;
     color: black;
-    font-size: 1.5em;
+    font-size: 1.2em;
     text-align: left;
     line-height: 70px;
   }
 
   #nav a:link, #nav a:visited, #nav a:active {
-    color: white;
-    border: 1.5px solid black;
-    background-color: rgba(0,0,0,0.8);
+    color: rgba(10,10,10);
+    border: 4.4px rgba(250,250,250,0.7);
+    border-style: none none none solid;
+    background-color: rgba(250,250,250,0.3);
   }
 
   #nav a:hover {
     color: rgba(244,246,248,0.7);
-    border: 1.5px solid rgba(244,246,248,0.7);
+    background-color: rgba(250,250,250,0.2);
   }
 }
