@@ -1,7 +1,4 @@
 /*
-    "There is scarcely any passion without struggle."
-        - Albert Camus
-
              *     ,MMM8&&&.            *
                   MMMM88&&&&&    .
                  MMMM88&&&&&&&
@@ -34,23 +31,20 @@ body {
 
   font-weight: normal;
   font-family: Open Sans, Sans-Serif;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-}
 
-canvas {
-  /* Ensure the canvas element will not highlight when clicked */
+  /* Make sure nothing on the page is selectable. */
   -webkit-touch-callout: none;
     -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
             user-select: none;
+}
+
+#canvas {
+  /* Ensure the canvas element will not highlight when clicked. */
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   outline: none;
 
-  /* Fill the canvas to slightly over half the window */
+  /* Fill the canvas to the entire the window. */
   position: absolute;
   top: 0;
   left: 0;
@@ -59,14 +53,7 @@ canvas {
 
 #content {
   position: fixed;
-  margin-left: 42px;
-  margin-top: 224px;
+  margin: 238px 40px;
+  font-size: 1.4em;
   z-index: 1;
-}
-
-/* Fancy little trick to obfuscate an email from spammers */
-.obfuscateEmail:before {
-  content: attr(dsite) "\0040" attr(duser);
-  unicode-bidi: bidi-override;
-  direction: rtl;
 }

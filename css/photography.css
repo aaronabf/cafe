@@ -1,7 +1,4 @@
 /*
-    "Where there is no hope, it is incumbent on us to invent it."
-        - Albert Camus
-
              *     ,MMM8&&&.            *
                   MMMM88&&&&&    .
                  MMMM88&&&&&&&
@@ -34,23 +31,14 @@ body {
 
   font-weight: normal;
   font-family: Open Sans, Sans-Serif;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
 .preload * {
   -webkit-transition: none !important;
-     -moz-transition: none !important;
-      -ms-transition: none !important;
-       -o-transition: none !important;
           transition: none !important;
 
   -webkit-filter: none !important;
-     -moz-filter: none !important;
-      -ms-filter: none !important;
-       -o-filter: none !important;
           filter: none !important;
 }
 
@@ -74,7 +62,7 @@ body {
   font-size: 100%;
 }
 
-#use {
+#photo-use {
   position: absolute;
   float: left;
   bottom: 0;
@@ -86,22 +74,28 @@ body {
   text-decoration: none;
 }
 
-#use-header {
+#photo-use-header {
   margin-bottom: 30;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+            user-select: none;
 }
 
-#use-body {
+#photo-use-body {
   display: none;
 
   margin-bottom: 30;
 }
 
-#use-close {
+#photo-use-close {
   float: right;
   font-weight: bold;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+            user-select: none;
 }
 
-#use-footer {
+#photo-use-footer {
   margin-bottom: 30;
 }
 
@@ -116,8 +110,9 @@ body {
   color: #f44;
   font-size: 3em;
   -webkit-transform: rotate(-90deg) translateX(177px) translateY(5px);
-  /*-webkit-transform: rotate(-90deg) translateX(177px) translateY(-543px);*/
+          transform: rotate(-90deg) translateX(177px) translateY(5px);
   -webkit-transform-origin: 100% 100%;
+          transform-origin: 100% 100%;
 }
 
 #images img {
@@ -129,17 +124,11 @@ body {
   padding-bottom: 3%;
 
   -webkit-transition: all 0.5s ease;
-     -moz-transition: all 0.5s ease;
-      -ms-transition: all 0.5s ease;
-       -o-transition: all 0.5s ease;
           transition: all 0.5s ease;
 }
 
 #images img:hover {
   -webkit-filter: blur(6px) grayscale(100%);
-     -moz-filter: blur(6px) grayscale(100%);
-      -ms-filter: blur(6px) grayscale(100%);
-       -o-filter: blur(6px) grayscale(100%);
           filter: blur(6px) grayscale(100%);
 }
 
@@ -151,7 +140,11 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
-  #use {
+  #images {
+    padding: 16% 8%;
+  }
+
+  #photo-use {
     right: 0;
     bottom: 2%;
     left: 0;
@@ -162,12 +155,12 @@ body {
     text-align: center;
   }
 
-  #use-header {
+  #photo-use-header {
     padding-bottom: 4px;
     margin-bottom: 0;
   }
 
-  #use-body {
+  #photo-use-body {
     position: absolute;
     left: 3%;
     bottom: 3%;
@@ -178,7 +171,7 @@ body {
     border: 1.5px solid #666;
   }
 
-  #use-footer {
+  #photo-use-footer {
     margin-bottom: 0;
   }
 }

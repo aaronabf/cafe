@@ -1,7 +1,4 @@
 <!--
-    "Always go too far, because that's where you'll find the truth."
-        - Albert Camus
-
              *     ,MMM8&&&.            *
                   MMMM88&&&&&    .
                  MMMM88&&&&&&&
@@ -28,30 +25,69 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="Description" content="Hi, I'm Aaron. Welcome to my cafe."/>
+    <meta name="Description" content="Welcome to my cafe."/>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
 
     <meta property="og:url" content="https://aaron.cafe/"/>
     <meta property="og:title" content="Aaron's Cafe"/>
     <meta property="og:image" content="https://aaron.cafe/media/cafe-og.jpg"/>
-    <meta property="og:description" content="Hi, I'm Aaron. Welcome to my cafe."/>
+    <meta property="og:description" content="Welcome to my cafe."/>
     <meta property="og:type" content="website"/>
 
-    <title>Aaron's Cafe</title>
+    <title>Cafe</title>
 
-    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="shortcut icon" href="media/favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
-    <link rel="stylesheet" type="text/css" charset="utf-8" href="css/home.css" />
+    <link rel="stylesheet" type="text/css" charset="utf-8" href="css/index.css" />
   </head>
   <body>
-    <div id="title">Hi, welcome to <br>my cafe</div>
+    <div class="container">
 
-    <div id="nav">
-      <div><a href="./photography.html">Photography</a></div>
-      <div><a href="./about.html">About Me</a></div>
+      <div class="section" id="background">
+        <div id="header">
+          <div id="title">Hi, welcome to <br>my cafe</div>
+          <div id="scroll">
+            <a data-scroll href="#content">
+              <div class="arrow"><span></span>click or scroll</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" id="content">
+        <div id="content-wrapper">
+          <p>
+            Hi! My name is Aaron. This is my cafe.
+            Maybe one day I will have a brick and mortar equivalent but until then this site will have to do.
+
+            <br><br>
+
+            I enjoy minimalist elements in both visual arts and music, hence this site's simple design.
+            Though, I will admit that is only half the truth—frontend development is not my favorite.
+
+            <br><br>
+
+            I work as a software engineering with an emphasis on infrastructure and backend development.
+
+            <br><br>
+
+            If you would like to get in touch for any reason feel free to shoot me a message.
+            If you are a recruiter I would not recommend not reaching out via email as I will ignore it.
+            I can be reached at <span class="obfuscateEmail" duser="ih" dsite="efac.noraa" />.
+
+            <br><br>
+
+            Links to other content on this site:
+          </p>
+          <div id="nav">
+            <div><a href="./jiggle.html">Jiggle</a></div>
+            <div><a href="./photography.html">Photography</a></div>
+          </div>
+        </div>
     </div>
 
+    </div>
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/homepage.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
   </body>
 </html>

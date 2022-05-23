@@ -1,7 +1,4 @@
 <!--
-    "Man is the only creature who refuses to be what he is."
-        - Albert Camus
-
              *     ,MMM8&&&.            *
                   MMMM88&&&&&    .
                  MMMM88&&&&&&&
@@ -28,20 +25,20 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="Description" content="Hi, I'm Aaron. Welcome to my cafe."/>
+    <meta name="Description" content="Photography."/>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
 
     <meta property="og:url" content="https://aaron.cafe/photography"/>
     <meta property="og:title" content="Photography"/>
     <meta property="og:image" content="https://aaron.cafe/media/cafe-og.jpg"/>
-    <meta property="og:description" content="Hi, I'm Aaron. This is my photography."/>
+    <meta property="og:description" content="Photography."/>
     <meta property="og:type" content="website"/>
 
     <title>Photography</title>
 
-    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="shortcut icon" href="media/favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
-    <link rel="stylesheet" type="text/css" charset="utf-8" href="css/photo.css">
+    <link rel="stylesheet" type="text/css" charset="utf-8" href="css/photography.css">
   </head>
   <body class="preload">
 
@@ -50,10 +47,10 @@
       <p id="author">Aaron Friedlander</p>
     </div>
 
-    <div id="use">
-      <p id="use-header">Click for here to view the photo use policy.</p>
-      <p id="use-body">
-        Photos fall into one of two categories:<span id="use-close">&times;</span>
+    <div id="photo-use">
+      <p id="photo-use-header">Click for here to view the photo use policy.</p>
+      <p id="photo-use-body">
+        Photos fall into one of two categories:<span id="photo-use-close">&times;</span>
         <br><br>
         1) Photos that <b>DO NOT</b> contain a watermark in the bottom right corner:
         <br><br>
@@ -62,33 +59,16 @@
         2) Photos that <b>DO</b> contain a watermark in the bottom right corner:
         <br><br>
         These works fall under a general copyright. You <b>MUST</b> contact me regarding any use of these photos.
-        My email is <span class="obfuscateEmail" duser="fba.noraa" dsite="moc.liamg" />.
+        My email is <span class="obfuscateEmail" duser="ih" dsite="efac.noraa" />.
       </p>
-      <p id="use-footer">Copyright &copy; 2018, Aaron Friedlander, All rights reserved.</p>
+      <p id="photo-use-footer">Copyright &copy; 2022, Aaron Friedlander, All rights reserved.</p>
     </div>
 
     <div id="images">
-    <div class="verticaltext">PORTFOLIO UNDER CONSTRUCTION</div>
-      <!-- <div class="verticaltext">Factory</div><a target="_blank" href=""><img src="media/photography/factory.jpg"></a> <br> -->
-      <!-- <div class="verticaltext">Animals</div><a target="_blank" href=""><img src="media/photography/animals.jpg"></a> <br> -->
+      <div class="verticaltext">PORTFOLIO UNDER CONSTRUCTION</div>
     </div>
 
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript">
-      $(window).on('load', function() {
-        $('body').removeClass('preload');
-      });
-
-      $('#use-header').on('click', function() {
-        $('#use-header').hide();
-        $('#use-body').show();
-      });
-      $(window).on('click', function(e) {
-        if ($(e.target).is('#use-close')) {
-          $('#use-header').show();
-          $('#use-body').hide();
-        }
-      });
-    </script>
+    <script type="text/javascript" src="js/photography.js"></script>
   </body>
 </html>

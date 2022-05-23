@@ -1,8 +1,4 @@
 /*
-    "In the depth of winter, I finally learned that within me there lay an invincible summer."
-        - Albert Camus
-
-
              *     ,MMM8&&&.            *
                   MMMM88&&&&&    .
                  MMMM88&&&&&&&

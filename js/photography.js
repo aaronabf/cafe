@@ -1,7 +1,4 @@
 /*
-    "Freedom is nothing but a chance to be better."
-        - Albert Camus
-
              *     ,MMM8&&&.            *
                   MMMM88&&&&&    .
                  MMMM88&&&&&&&
@@ -25,32 +22,18 @@
   |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
 */
 
-const mainImg   = 'cafe-main';
-const mobileImg = 'cafe-mobile';
-
-$(document).ready( function() {
-  loadCorrectImage();
-  $(window).resize(loadCorrectImage);
+$(window).on('load', function() {
+  $('body').removeClass('preload');
 });
 
-function loadCorrectImage() {
-  if (!isMobile()) {
-    loadImage(mainImg);
-  } else {
-    loadImage(mobileImg);
+$('#photo-use-header').on('click', function() {
+  $('#photo-use-header').hide();
+  $('#photo-use-body').show();
+});
+
+$(window).on('click', function(e) {
+  if ($(e.target).is('#photo-use-close')) {
+    $('#photo-use-header').show();
+    $('#photo-use-body').hide();
   }
-}
-
-function isMobile() {
-  return window.matchMedia('(max-width: 767px)').matches;
-}
-
-function loadImage(img) {
-  var c = new Image();
-
-  c.onload = function(){
-    $('body').css('background-image', 'url(media/' + img + '.jpg)');
-  }
-
-  c.src = 'media/' + img + '.jpg';
-}
+});
